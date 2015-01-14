@@ -44,6 +44,10 @@ group :test do
   gem 'faker'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
