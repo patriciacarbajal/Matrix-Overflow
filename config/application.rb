@@ -15,6 +15,7 @@ Bundler.require(*Rails.groups)
 
 module MatrixOverflow
   class Application < Rails::Application
+    
     config.assets.initialize_on_precompile = false
     config.serve_static_assets = true
 
