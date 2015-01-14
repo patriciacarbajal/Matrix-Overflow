@@ -1,0 +1,26 @@
+<h1>Admin Portal</h1>
+<% if flash[:danger]  %>
+<%= flash[:danger] %>
+<% end %><br>
+
+<h2>Login:</h2>
+<%= form_for @admin, url: admins_login_path(@admin) do |f|%>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.submit "Login" %>
+<% end %>
+
+<h2>Create a new admin:</h2>
+<ul>
+  <%= form_for @admin, url: admins_check_path do |f| %>
+    <li>
+      <%= f.label :Please_Enter_Admin_Key %>
+      <%= f.text_field :admin_id %>
+    </li>
+      <%= f.submit %>
+  <% end %>
+</ul>

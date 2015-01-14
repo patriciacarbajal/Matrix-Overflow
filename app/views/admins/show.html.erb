@@ -1,0 +1,25 @@
+
+Admin:
+<h1><%= @admin.username %></h1>
+
+<h2>Email: <%= @admin.email %></h2><%= link_to "Edit Admin", edit_admin_path(@admin)%>
+
+<ul>
+  <%= form_for @category, url: categories_path(@category) do |f| %>
+  <%= f.hidden_field :admin_id, value: params[:id] %>
+    <li>
+      <%= f.label :Category %>
+      <%= f.text_field :name %>
+    </li>
+      <%= f.submit %>
+  <% end %>
+</ul>
+
+Categories you have made:
+<ul>
+   <% @admin.categories.each do |category| %>
+    <li><%= link_to category.name, category_posts_path(category.id) %> |
+      <span><%= link_to 'delete', category_path(category), :method => :delete %></span>
+    </li>
+   <% end %>
+</ul>

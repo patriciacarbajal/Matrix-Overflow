@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MatrixOverflow</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans' rel='stylesheet' type='text/css'>s
+</head>
+<body>
+
+<div class="header">
+  <% if current_user %>
+      <%= link_to 'Logout', logout_path, method: 'DELETE'  %>
+      <span><%= link_to 'Profile', edit_user_path(session[:user_id])%></span>
+  <% else %>
+      <a href="/users/new">Signup</a> | <a href="/login">Login</a>
+  <% end %>
+
+  <span><%= link_to 'Home', root_path%></span>
+
+
+
+
+</div>
+<%= display_error %>
+<div class="container">
+<%= yield %>
+</div>
+
+</body>
+</html>

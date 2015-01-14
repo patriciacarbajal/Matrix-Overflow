@@ -1,0 +1,9 @@
+<%= link_to "back to #{@category.name}", category_posts_path%>
+
+<%= render partial: 'show_post_contents', :locals =>{ :@post => @post }  %>
+
+
+<% @post.children.each do |comment| %>
+  <%= render partial: 'show_post_contents', :locals => { :@post => comment } %>
+<% end %>
+

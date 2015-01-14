@@ -1,0 +1,6 @@
+<h1 class="larger">CATEGORIES</h1>
+<ol>
+<% @categories.each do |category| %>
+  <li><%= link_to category.name, category_posts_path(category.id), :class=>"large" %></li>
+<% end %>
+</ol>

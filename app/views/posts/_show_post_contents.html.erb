@@ -1,0 +1,30 @@
+<div class="post_wrapper">
+  <h3> at <%= @post.created_at %>, <%= @post.user.username%> wrote:</h3>
+  <h2><%= @post.title %> </h2>
+  <p><%= @post.content %></p>
+
+  <div class="vote">
+    <%= link_to 'Upvote', votes_path(post: @post), method: 'POST' %>
+  </div>
+  <div class="vote">
+    <%= link_to 'Downvote', vote_path(post: @post), method: 'DELETE' %>
+  </div>
+  <div class="votecount">
+    <%= @post.vote_count %>
+  </div>
+
+
+<% if current_user && @post.user_id == current_user.id %>
+  <span><%= link_to 'edit', edit_category_post_path(@post.category, @post) %></span><br>
+  <span><%= link_to 'delete', category_post_path(@post.category, @post), :method => :delete %></span><br>
+<% end %>
+
+<% if current_user %>
+  <%= link_to "Reply To This Post", new_category_post_path(:category_id => @category.id, :parent_id => @post.id)%>
+<% end %>
+
+
+<% @post.children.each do |comment| %>
+  <%= render partial: 'show_post_contents', :locals => { :@post => comment } %>
+<% end %>
+</div>
