@@ -1,8 +1,13 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Category.find(params[:category_id]).posts.where(parent_id: nil)
-  end
+if !current_user
+      flash[:login] = "Please log in above to use Matrix Overflow!" 
+      redirect_to root_path
+    else
+     @posts = Category.find(params[:category_id]).posts.where(parent_id: nil)
+    end
+  end  end
 
   def show
     @category = Category.find(params[:category_id])
